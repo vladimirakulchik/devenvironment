@@ -1,4 +1,4 @@
-version: '3.8'
+version: "3.8"
 
 services:
   product-api:
@@ -7,10 +7,10 @@ services:
     depends_on:
       - db
     volumes:
-      - ../product-api:/data/app
-      - ./scripts:/scripts:ro
+      - "../product-api:/data/app"
+      - "./scripts:/scripts:ro"
     ports:
-      - '127.0.0.1:8080:80'
+      - "127.0.0.1:8080:80"
     env_file:
       - ../dot-env/product-api/.env
     extra_hosts:
@@ -19,14 +19,9 @@ services:
     image: mysql:${MYSQL_VERSION}
     restart: always
     ports:
-      - '127.0.0.1:3306:3306'
+      - "127.0.0.1:3306:3306"
     environment:
       MYSQL_ROOT_PASSWORD: ${MYSQL_ROOT_PASSWORD}
       MYSQL_DATABASE: ${MYSQL_DATABASE}
-      MYSQL_USER: ${MYSQL_USER}
-      MYSQL_PASSWORD: ${MYSQL_PASSWORD}
     volumes:
-      - db_data:/var/lib/mysql
-
-volumes:
-  db_data:
+      - "./resources/mysql/data:/var/lib/mysql"
